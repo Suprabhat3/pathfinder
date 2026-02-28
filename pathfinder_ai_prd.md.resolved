@@ -1,12 +1,12 @@
 # Product Requirements Document (PRD)
 
-## Project Name: **PathFinder AI** (Working Title)
+## Project Name: **Path Menties** (Working Title)
 ### Tagline: *Your AI-Powered Journey to Success.*
 
 ---
 
 ## 1. Executive Summary
-**PathFinder AI** is an intelligent web application designed to help students, self-learners, and professionals generate structured, goal-oriented roadmaps. By leveraging AI, the platform provides step-by-step, actionable plans tailored to a user's specific goals, timeline, and current skill level. 
+**Path Menties** is an intelligent web application designed to help students, self-learners, and professionals generate structured, goal-oriented roadmaps. By leveraging AI, the platform provides step-by-step, actionable plans tailored to a user's specific goals, timeline, and current skill level. 
 
 The application will adopt the premium, ATS-friendly aesthetic of **ATScV** (built with Next.js, Tailwind CSS, and Lucide icons), utilizing a clean `slate-50` background, `emerald` accents, and modern typography (Geist/Geist Mono).
 

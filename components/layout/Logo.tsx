@@ -7,14 +7,14 @@ export default function Logo({ showText = false }: { showText?: boolean }) {
       href="/"
       className="flex items-center gap-3 hover:opacity-80 transition-opacity"
     >
-      <div className="relative w-15 h-15 overflow-hidden flex-shrink-0">
-        <Image
-          src="/path menties logo.png"
-          alt="Path Menties Logo"
-          fill
-          className="object-contain"
-        />
-      </div>
+      <Image
+        src="/path menties logo.png"
+        alt="Path Menties Logo"
+        width={150}
+        height={50}
+        className="w-auto h-10 object-contain"
+        priority
+      />
       {showText && (
         <span className="font-bold text-xl tracking-tight text-slate-900 hidden sm:block">
           PathFinder<span className="text-emerald-600">AI</span>

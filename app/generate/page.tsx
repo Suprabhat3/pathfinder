@@ -10,7 +10,7 @@ import {
   BarChart,
   Sparkles,
 } from "lucide-react";
-import Logo from "@/components/layout/Logo";
+import Navbar from "@/components/layout/Navbar";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -41,12 +41,11 @@ export default function GeneratePage() {
   return (
     <main className="min-h-screen bg-slate-50 font-sans flex flex-col items-center">
       {/* Header */}
-      <nav className="w-full max-w-3xl mx-auto px-6 py-6 flex items-center justify-between z-10">
-        <Logo />
-        <div className="text-sm font-medium text-slate-500">
+      <Navbar className="max-w-4xl">
+        <div className="text-sm font-medium text-slate-500 bg-white/50 px-4 py-2 rounded-full border border-slate-200">
           Step {step} of 3
         </div>
-      </nav>
+      </Navbar>
 
       <div className="flex-1 w-full max-w-xl mx-auto px-6 py-12 flex flex-col">
         {/* Progress Bar */}

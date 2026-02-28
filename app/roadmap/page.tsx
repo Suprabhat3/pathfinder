@@ -126,7 +126,7 @@ function RoadmapContent() {
   return (
     <main className="min-h-screen bg-slate-50 font-sans flex flex-col items-center">
       {/* Header */}
-      <Navbar className="max-w-4xl sticky top-0 bg-slate-50/80 backdrop-blur-md border-b border-slate-200/50">
+      <Navbar className="max-w-4xl">
         <button className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-3 py-2 rounded-lg hover:bg-slate-100">
           <Share2 className="w-4 h-4" /> Share
         </button>

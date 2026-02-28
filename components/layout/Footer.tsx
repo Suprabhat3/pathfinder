@@ -27,8 +27,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="mt-8 text-center text-sm text-slate-400">
-        &copy; {new Date().getFullYear()} PathFinder AI / Path Menties. All
-        rights reserved.
+        &copy; {new Date().getFullYear()} Path Menties. All rights reserved.
       </div>
     </footer>
   );

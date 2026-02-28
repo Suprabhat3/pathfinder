@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PathFinder AI",
+  title: "Path Menties",
   description:
     "Stop guessing. Start achieving. Let AI build your perfect learning roadmap.",
 };
