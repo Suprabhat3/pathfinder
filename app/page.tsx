@@ -3,6 +3,9 @@ import Footer from "@/components/layout/Footer";
 import BackgroundAmbience from "@/components/landing/BackgroundAmbience";
 import Hero from "@/components/landing/Hero";
 import FeatureGrid from "@/components/landing/FeatureGrid";
+import HowItWorks from "@/components/landing/HowItWorks";
+import Testimonials from "@/components/landing/Testimonials";
+import CTA from "@/components/landing/CTA";
 
 export default function Home() {
   return (
@@ -12,6 +15,11 @@ export default function Home() {
       <main className="flex-1 flex flex-col items-center w-full">
         <Hero />
         <FeatureGrid />
+        <div id="how-it-works" className="w-full">
+          <HowItWorks />
+        </div>
+        <Testimonials />
+        <CTA />
       </main>
       <Footer />
     </div>

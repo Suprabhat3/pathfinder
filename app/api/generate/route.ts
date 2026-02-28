@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || "YOUR_OPENAI_API_KEY_HERE",
+// Perplexity API uses OpenAI compatible endpoints
+const perplexity = new OpenAI({
+  apiKey: process.env.PERPLEXITY_API_KEY || "YOUR_PERPLEXITY_API_KEY_HERE",
+  baseURL: "https://api.perplexity.ai",
 });
 
 export const maxDuration = 60; 
@@ -19,30 +21,37 @@ export async function POST(req: Request) {
 Their current skill level is: "${level || "Beginner"}".
 They have the following time commitment: "${timeline || "As needed"}".
 
+Use your real-time search capabilities to find the most up-to-date and highly recommended YouTube videos, official documentation, and free courses for this specific goal.
+
 Return ONLY a valid JSON object with a single root property called "roadmap" that contains an array of steps. Each step MUST conform to this structure:
 {
   "id": 1, 
-  "title": "A short, descriptive title for the step/module",
-  "description": "A concise, motivating explanation of what to study, why it matters, and high-level concepts.",
-  "time": "Estimated time duration for this step (e.g., 'Day 1-3' or 'Week 1-2')",
+  "title": "A short, descriptive title",
+  "description": "What to study and why it matters.",
+  "time": "Estimated time duration",
   "resources": [
-    { "name": "Name of the resource (e.g., MDN Web Docs)", "url": "A valid, real URL to a free, high-quality resource like YouTube, freeCodeCamp, documentation, etc. Use '#' if absolutely no link is available." }
+    { "name": "Name of resource (e.g. YouTube Video - Channel Name)", "url": "Actual valid URL found from your search" }
   ]
 }
 
-Make the roadmap practical, chronological, tailored exactly to their goal, and capped at around 5-8 major milestones/modules for maximum focus and achievable progress. Do not use markdown wrappers (\`\`\`json) or extra text.`;
+Make the roadmap practical, chronological, tailored exactly to their goal, and capped at around 5-8 major milestones/modules. Output raw JSON only. Do not include introductory text.`;
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [{ role: "user", content: prompt }],
-      response_format: { type: "json_object" },
+    const response = await perplexity.chat.completions.create({
+      model: "sonar", // the fast Perplexity model with search capabilities
+      messages: [
+        { role: "system", content: "You are a helpful assistant that outputs only valid JSON without markdown formatting." },
+        { role: "user", content: prompt }
+      ]
     });
 
-    const content = response.choices[0].message.content;
+    let content = response.choices[0].message.content;
     
     if (!content) {
       throw new Error("No content generated");
     }
+
+    // Clean up potential markdown formatting that Perplexity might return
+    content = content.replace(/```json/gi, '').replace(/```/g, '').trim();
 
     const data = JSON.parse(content);
     return NextResponse.json(data);
@@ -52,3 +61,4 @@ Make the roadmap practical, chronological, tailored exactly to their goal, and c
     return NextResponse.json({ error: "Failed to generate roadmap", details: error.message }, { status: 500 });
   }
 }
+
