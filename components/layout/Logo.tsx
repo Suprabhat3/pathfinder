@@ -16,8 +16,8 @@ export default function Logo({ showText = false }: { showText?: boolean }) {
         priority
       />
       {showText && (
-        <span className="font-bold text-xl tracking-tight text-slate-900 hidden sm:block">
-          Path <span className="text-emerald-600">Menties</span>
+        <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-slate-50 hidden sm:block">
+          Path <span className="text-emerald-600 dark:text-emerald-500">Menties</span>
         </span>
       )}
     </Link>
