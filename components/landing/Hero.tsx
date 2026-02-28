@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <div className="relative flex flex-col items-center justify-center w-full min-h-[85vh] px-6 z-10 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000">
       {/* Subtle grid pattern mask */}
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-40 -z-10" />
+      <div className="absolute inset-0 bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-40 -z-10" />
 
       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-emerald-200 backdrop-blur-md mb-8 text-sm font-semibold text-emerald-800 shadow-sm shadow-emerald-100 mt-10">
         <Sparkles className="w-4 h-4 text-emerald-500" />

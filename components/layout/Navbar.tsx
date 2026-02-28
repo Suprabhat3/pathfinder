@@ -13,7 +13,7 @@ export default function Navbar({ children, className = "" }: NavbarProps) {
       <nav
         className={`w-full max-w-5xl mx-auto flex items-center justify-between bg-white/70 backdrop-blur-xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-2xl px-6 py-4 transition-all duration-300 ${className}`}
       >
-        <Logo />
+        <Logo showText={true} />
         <div className="flex items-center gap-6">
           {children ? (
             children

@@ -8,7 +8,7 @@ export default function Logo({ showText = false }: { showText?: boolean }) {
       className="flex items-center gap-3 hover:opacity-80 transition-opacity"
     >
       <Image
-        src="/path menties logo.png"
+        src="/path-menties-logo.png"
         alt="Path Menties Logo"
         width={150}
         height={50}
@@ -17,7 +17,7 @@ export default function Logo({ showText = false }: { showText?: boolean }) {
       />
       {showText && (
         <span className="font-bold text-xl tracking-tight text-slate-900 hidden sm:block">
-          PathFinder<span className="text-emerald-600">AI</span>
+          Path <span className="text-emerald-600">Menties</span>
         </span>
       )}
     </Link>
