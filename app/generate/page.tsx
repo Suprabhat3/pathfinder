@@ -10,6 +10,7 @@ import {
   BarChart,
   Sparkles,
 } from "lucide-react";
+import Logo from "@/components/layout/Logo";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -41,17 +42,7 @@ export default function GeneratePage() {
     <main className="min-h-screen bg-slate-50 font-sans flex flex-col items-center">
       {/* Header */}
       <nav className="w-full max-w-3xl mx-auto px-6 py-6 flex items-center justify-between z-10">
-        <Link
-          href="/"
-          className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-        >
-          <div className="bg-emerald-500 p-2 rounded-xl">
-            <Map className="w-5 h-5 text-white" />
-          </div>
-          <span className="font-bold text-xl tracking-tight text-slate-900">
-            PathFinder<span className="text-emerald-600">AI</span>
-          </span>
-        </Link>
+        <Logo />
         <div className="text-sm font-medium text-slate-500">
           Step {step} of 3
         </div>

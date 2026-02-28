@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import Navbar from "@/components/layout/Navbar";
 
 interface Resource {
   name: string;
@@ -125,30 +126,17 @@ function RoadmapContent() {
   return (
     <main className="min-h-screen bg-slate-50 font-sans flex flex-col items-center">
       {/* Header */}
-      <nav className="w-full max-w-4xl mx-auto px-6 py-6 flex items-center justify-between z-10 sticky top-0 bg-slate-50/80 backdrop-blur-md border-b border-slate-200/50">
-        <Link
-          href="/"
-          className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+      <Navbar className="max-w-4xl sticky top-0 bg-slate-50/80 backdrop-blur-md border-b border-slate-200/50">
+        <button className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-3 py-2 rounded-lg hover:bg-slate-100">
+          <Share2 className="w-4 h-4" /> Share
+        </button>
+        <button
+          onClick={() => window.print()}
+          className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-3 py-2 rounded-lg hover:bg-slate-100"
         >
-          <div className="bg-emerald-500 p-2 rounded-xl">
-            <Map className="w-5 h-5 text-white" />
-          </div>
-          <span className="font-bold text-xl tracking-tight text-slate-900 hidden sm:block">
-            PathFinder<span className="text-emerald-600">AI</span>
-          </span>
-        </Link>
-        <div className="flex items-center gap-4">
-          <button className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-3 py-2 rounded-lg hover:bg-slate-100">
-            <Share2 className="w-4 h-4" /> Share
-          </button>
-          <button
-            onClick={() => window.print()}
-            className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-3 py-2 rounded-lg hover:bg-slate-100"
-          >
-            <Download className="w-4 h-4" /> Export
-          </button>
-        </div>
-      </nav>
+          <Download className="w-4 h-4" /> Export
+        </button>
+      </Navbar>
 
       <div className="flex-1 w-full max-w-3xl mx-auto px-6 py-12 flex flex-col">
         {/* Title & Progress */}
