@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="100%" height="100%" fill="none">
+  <!-- Defs for complex gradients and filters -->
+  <defs>
+    <!-- Background glowing orbs -->
+    <radialGradient id="glow-emerald" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-teal" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f766e" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#0f766e" stop-opacity="0"/>
+    </radialGradient>
+    
+    <!-- Path Gradient -->
+    <linearGradient id="path-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="30%" stop-color="#cbd5e1" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Glowing Lines Gradient -->
+    <linearGradient id="glow-line" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Glass Node Profile -->
+    <filter id="glass-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="15" flood-color="#0f172a" flood-opacity="0.08"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.04"/>
+    </filter>
+
+    <!-- Intense glow filter -->
+    <filter id="intense-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur1" />
+      <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Ambient Background Orbs -->
+  <circle cx="800" cy="200" r="300" fill="url(#glow-emerald)" />
+  <circle cx="300" cy="500" r="250" fill="url(#glow-teal)" />
+
+  <!-- Subtle connecting tech grid -->
+  <g stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,8" opacity="0.4">
+    <path d="M 150 550 L 350 400" />
+    <path d="M 350 400 L 600 250" />
+    <path d="M 600 250 L 800 150" />
+    <path d="M 350 400 L 450 600" />
+    <path d="M 600 250 L 700 450" />
+  </g>
+
+  <!-- Main flowing path - 3D stacked effect -->
+  <!-- Shadow/Base layer -->
+  <path d="M 150 570 C 300 570, 250 420, 450 420 C 650 420, 550 220, 800 220" 
+        stroke="#e2e8f0" stroke-width="38" stroke-linecap="round" fill="none"/>
+  
+  <!-- Outer glass casing -->
+  <path d="M 150 550 C 300 550, 250 400, 450 400 C 650 400, 550 200, 800 200" 
+        stroke="#ffffff" stroke-width="36" stroke-linecap="round" fill="none" opacity="0.8" filter="url(#glass-shadow)"/>
+        
+  <!-- Core glowing path -->
+  <path d="M 150 550 C 300 550, 250 400, 450 400 C 650 400, 550 200, 800 200" 
+        stroke="url(#path-gradient)" stroke-width="16" stroke-linecap="round" fill="none"/>
+        
+  <!-- Bright thin core line -->
+  <path d="M 150 550 C 300 550, 250 400, 450 400 C 650 400, 550 200, 800 200" 
+        stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5"/>
+
+  <!-- Energy particles flowing along the path -->
+  <circle cx="210" cy="520" r="6" fill="#ffffff" filter="url(#intense-glow)"/>
+  <circle cx="340" cy="425" r="4" fill="#ffffff" filter="url(#intense-glow)"/>
+  <circle cx="580" cy="275" r="7" fill="#ffffff" filter="url(#intense-glow)"/>
+  <circle cx="700" cy="210" r="5" fill="#ffffff" filter="url(#intense-glow)"/>
+
+  <!-- Glowing Milestone Nodes (Start to Finish) -->
+  
+  <!-- Node 1: Start (Base Layer) -->
+  <g transform="translate(150, 550)" filter="url(#glass-shadow)">
+    <circle cx="0" cy="0" r="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="0" cy="0" r="18" fill="#94a3b8" opacity="0.2"/>
+    <circle cx="0" cy="0" r="10" fill="#94a3b8"/>
+  </g>
+
+  <!-- Node 2: First Milestone (Learning) -->
+  <g transform="translate(350, 460)" filter="url(#glass-shadow)">
+    <!-- Tech floating element next to node -->
+    <rect x="-60" y="-30" width="30" height="20" rx="4" fill="#ffffff" opacity="0.9" filter="url(#glass-shadow)"/>
+    <rect x="-55" y="-25" width="20" height="4" rx="2" fill="#cbd5e1" />
+    <rect x="-55" y="-17" width="12" height="4" rx="2" fill="#e2e8f0" />
+    
+    <circle cx="0" cy="0" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="0" cy="0" r="22" fill="#34d399" opacity="0.2"/>
+    <circle cx="0" cy="0" r="12" fill="#34d399"/>
+  </g>
+
+  <!-- Node 3: Major Milestone (Building) -->
+  <g transform="translate(560, 310)" filter="url(#glass-shadow)">
+    <!-- Floating abstract code/data elements -->
+    <path d="M 40 -40 L 60 -40 L 60 -20" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M 70 -50 L 50 -50 L 50 -70" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="60" cy="-60" r="6" fill="#10b981"/>
+
+    <circle cx="0" cy="0" r="38" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="0" cy="0" r="26" fill="#10b981" opacity="0.2"/>
+    <circle cx="0" cy="0" r="14" fill="#10b981" filter="url(#intense-glow)"/>
+  </g>
+
+  <!-- Node 4: The Summit (Mastery/Goals) -->
+  <g transform="translate(800, 200)" filter="url(#glass-shadow)">
+    <!-- Floating Success star -->
+    <path d="M 0 -80 L 8 -65 L 25 -65 L 12 -55 L 18 -40 L 0 -50 L -18 -40 L -12 -55 L -25 -65 L -8 -65 Z" fill="#10b981" transform="rotate(15)"/>
+    
+    <!-- Complex target node -->
+    <circle cx="0" cy="0" r="48" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="0" cy="0" r="40" fill="#059669" opacity="0.1"/>
+    <circle cx="0" cy="0" r="30" fill="#059669" opacity="0.2"/>
+    <circle cx="0" cy="0" r="18" fill="#059669" filter="url(#intense-glow)"/>
+  </g>
+
+  <!-- Floating 3D Geometric Accents (to add depth) -->
+  <g filter="url(#glass-shadow)">
+    <!-- Cube -->
+    <path d="M 120 300 L 150 285 L 180 300 L 150 315 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <path d="M 120 300 L 150 315 L 150 350 L 120 335 Z" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="2"/>
+    <path d="M 180 300 L 150 315 L 150 350 L 180 335 Z" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+    
+    <!-- Emerald Sphere -->
+    <circle cx="680" cy="450" r="24" fill="#34d399"/>
+    <path d="M 680 426 A 24 24 0 0 1 704 450 A 24 24 0 0 0 680 474 A 24 24 0 0 0 656 450 A 24 24 0 0 1 680 426 Z" fill="#10b981" opacity="0.4"/>
+    <circle cx="672" cy="442" r="6" fill="#ffffff" opacity="0.6"/> <!-- highlight -->
+
+    <!-- Emerald Pyramid -->
+    <path d="M 450 180 L 480 200 L 420 200 Z" fill="#6ee7b7"/>
+    <path d="M 450 180 L 480 200 L 450 220 Z" fill="#10b981"/>
+    <path d="M 450 180 L 420 200 L 450 220 Z" fill="#059669"/>
+  </g>
+
+  <!-- Sparkles/Stars floating around -->
+  <path d="M 250 200 Q 255 190 260 200 Q 270 205 260 210 Q 255 220 250 210 Q 240 205 250 200" fill="#34d399"/>
+  <path d="M 850 350 Q 853 343 856 350 Q 863 353 856 356 Q 853 363 850 356 Q 843 353 850 350" fill="#94a3b8"/>
+  <path d="M 400 550 Q 404 540 408 550 Q 418 554 408 558 Q 404 568 400 558 Q 390 554 400 550" fill="#10b981"/>
+
+</svg>

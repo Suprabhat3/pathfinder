@@ -4,19 +4,23 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <div className="relative flex flex-col items-center justify-center w-full min-h-[85vh] px-6 z-10 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000">
-      {/* Subtle grid pattern mask */}
-      <div className="absolute inset-0 bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-40 -z-10" />
+      {/* Subtle ambient light centered behind text to ensure contrast */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-white/30 blur-[100px] rounded-full mx-auto pointer-events-none -z-10"></div>
 
-      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-emerald-200 backdrop-blur-md mb-8 text-sm font-semibold text-emerald-800 shadow-sm shadow-emerald-100 mt-10">
-        <Sparkles className="w-4 h-4 text-emerald-500" />
+      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-emerald-200 backdrop-blur-md mb-8 text-sm font-semibold text-emerald-800 shadow-sm shadow-emerald-100 mt-10 hover:bg-white/80 transition-colors">
+        <Sparkles className="w-4 h-4 text-emerald-500 animate-pulse" />
         <span>Your AI-Powered Journey to Success</span>
       </div>
 
       <h1 className="max-w-4xl text-5xl md:text-7xl lg:text-[5rem] font-extrabold tracking-tight text-slate-900 mb-6 leading-[1.1]">
         Stop guessing. <br className="hidden md:block" />
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 relative inline-block">
-          Start achieving.
-          <div className="absolute -bottom-2 left-0 w-full h-3 bg-emerald-200/50 -rotate-2 -z-10 rounded-full"></div>
+        <span className="relative inline-block mt-2">
+          {/* Subtle gradient stroke or beautiful text treatment */}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 relative z-10">
+            Start achieving.
+          </span>
+          {/* Highlighting stroke behind text */}
+          <div className="absolute -bottom-1 left-0 w-full h-4 bg-emerald-200/60 -rotate-1 rounded-full -z-10 blur-[1px]"></div>
         </span>
       </h1>
 
@@ -25,17 +29,23 @@ export default function Hero() {
         zero to mastery, tailored to your goals and timeline.
       </p>
 
-      <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+      {/* Call to action buttons */}
+      <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto relative group">
+        {/* Glow behind buttons */}
+        <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500 to-teal-500 opacity-20 blur-xl rounded-full -z-10 pointer-events-none group-hover:opacity-30 transition-opacity duration-500"></div>
+
         <Link
           href="/generate"
-          className="group relative flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-semibold text-lg transition-all shadow-xl hover:shadow-slate-500/25 active:scale-95 border border-transparent hover:border-slate-700"
+          className="group/btn relative flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-semibold text-lg transition-all shadow-xl hover:shadow-emerald-500/20 active:scale-95 border border-transparent overflow-hidden"
         >
-          <span>Start for Free</span>
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          {/* Shimmer effect inside button */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] skew-x-[-30deg] group-hover/btn:translate-x-[150%] transition-transform duration-700 ease-in-out"></div>
+          <span className="relative z-10">Start for Free</span>
+          <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform relative z-10" />
         </Link>
         <Link
           href="#how-it-works"
-          className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-white/50 backdrop-blur-md hover:bg-white text-slate-700 border border-slate-200 rounded-xl font-semibold text-lg transition-all shadow-sm active:scale-95 hover:shadow-md"
+          className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-white/40 backdrop-blur-xl hover:bg-white text-slate-700 border border-slate-200 rounded-xl font-semibold text-lg transition-all shadow-sm active:scale-95 hover:shadow-md"
         >
           See How It Works
         </Link>

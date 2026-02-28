@@ -1,0 +1,120 @@
+<svg width="100%" height="100%" viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Heavy blurs for ambient background glows -->
+    <filter id="huge-blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="150" />
+    </filter>
+    
+    <!-- Medium blurs for glowing nodes -->
+    <filter id="glow-blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" />
+    </filter>
+
+    <!-- Base Grid Patterns -->
+    <pattern id="small-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#e2e8f0" stroke-width="1" opacity="0.6"/>
+    </pattern>
+    <pattern id="large-grid" width="150" height="150" patternUnits="userSpaceOnUse">
+      <rect width="150" height="150" fill="url(#small-grid)" />
+      <path d="M 150 0 L 0 0 0 150" fill="none" stroke="#cbd5e1" stroke-width="1.5" opacity="0.8"/>
+    </pattern>
+
+    <!-- Fading gradients -->
+    <radialGradient id="center-fade" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="path-grad-1" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <linearGradient id="path-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0.7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Clear white base background -->
+  <rect width="100%" height="100%" fill="#ffffff" />
+
+  <!-- Atmospheric glowing orbs -->
+  <!-- Top Left Soft Teal -->
+  <circle cx="10%" cy="20%" r="400" fill="#99f6e4" opacity="0.4" filter="url(#huge-blur)" />
+  <!-- Bottom Right Vibrant Emerald -->
+  <circle cx="90%" cy="80%" r="500" fill="#6ee7b7" opacity="0.35" filter="url(#huge-blur)" />
+  <!-- Central subtle highlight -->
+  <circle cx="50%" cy="50%" r="600" fill="#ecfdf5" opacity="0.5" filter="url(#huge-blur)" />
+
+  <!-- Fade mask for the precise elements to keep text highly legible at center -->
+  <mask id="fade-mask">
+    <!-- Grid fades out gradually at the edges but is strongest in center (or vice versa? Actually let's just make the grid fade out toward the bottom/edges) -->
+    <rect width="100%" height="100%" fill="url(#center-fade)" />
+  </mask>
+
+  <!-- Structured Grid background (gives the 'AI/system' feel) -->
+  <rect width="100%" height="100%" fill="url(#large-grid)" mask="url(#fade-mask)" opacity="0.6" />
+
+  <!-- Dynamic Roadmap Lines (Connecting paths curving beautifully) -->
+  <!-- We wrap them in a group with reduced opacity so they decorate rather than dominate -->
+  <g opacity="0.8">
+    
+    <!-- Path 1 (Left Side Ascending) -->
+    <!-- The dashed path line -->
+    <path d="M 150 700 C 250 650, 150 450, 300 350 S 450 300, 500 150" 
+          fill="none" stroke="url(#path-grad-1)" stroke-width="2" stroke-dasharray="6,8" opacity="0.8" />
+    <!-- Connecting Nodes -->
+    <circle cx="150" cy="700" r="4" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+    
+    <g transform="translate(300, 350)">
+      <circle cx="0" cy="0" r="12" fill="#34d399" opacity="0.3" filter="url(#glow-blur)"/>
+      <circle cx="0" cy="0" r="6" fill="#10b981" />
+      <circle cx="0" cy="0" r="2" fill="#ffffff" />
+    </g>
+
+    <g transform="translate(500, 150)">
+      <circle cx="0" cy="0" r="20" fill="#10b981" opacity="0.2" filter="url(#glow-blur)"/>
+      <circle cx="0" cy="0" r="8" fill="#ffffff" stroke="#10b981" stroke-width="3"/>
+    </g>
+
+    <!-- Path 2 (Right Side Floating) -->
+    <path d="M 1350 200 C 1200 250, 1250 450, 1100 500 S 950 550, 900 700" 
+          fill="none" stroke="url(#path-grad-2)" stroke-width="2" stroke-dasharray="5,10" opacity="0.7" />
+          
+    <circle cx="1350" cy="200" r="4" fill="#6ee7b7" />
+    
+    <g transform="translate(1100, 500)">
+      <circle cx="0" cy="0" r="15" fill="#10b981" opacity="0.3" filter="url(#glow-blur)"/>
+      <circle cx="0" cy="0" r="7" fill="#10b981" />
+    </g>
+
+    <g transform="translate(900, 700)">
+      <circle cx="0" cy="0" r="25" fill="#059669" opacity="0.15" filter="url(#glow-blur)"/>
+      <circle cx="0" cy="0" r="10" fill="#ffffff" stroke="#059669" stroke-width="3"/>
+    </g>
+
+  </g>
+
+  <!-- Technical/UI crosshair accents -->
+  <g stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" opacity="0.5">
+    <!-- Top Left -->
+    <path d="M 120 115 L 120 125 M 115 120 L 125 120" />
+    <!-- Bottom Right -->
+    <path d="M 1280 675 L 1280 685 M 1275 680 L 1285 680" />
+    <!-- Mid Left -->
+    <path d="M 80 445 L 80 455 M 75 450 L 85 450" />
+    <!-- Mid Right -->
+    <path d="M 1360 405 L 1360 415 M 1355 410 L 1365 410" />
+  </g>
+  
+  <!-- Subtle floating data rings (Adds depth to the background) -->
+  <g fill="none" stroke="#10b981" stroke-width="1" opacity="0.15">
+    <circle cx="250" cy="250" r="60" stroke-dasharray="10, 5, 2, 5" />
+    <circle cx="250" cy="250" r="20" stroke-width="2" />
+    
+    <circle cx="1150" cy="600" r="80" stroke-dasharray="4, 12" />
+    <circle cx="1150" cy="600" r="40" stroke-width="0.5" />
+  </g>
+
+</svg>
