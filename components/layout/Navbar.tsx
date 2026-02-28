@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "./Logo";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
+import { useState } from "react";
 
 interface NavbarProps {
   children?: React.ReactNode;
@@ -9,6 +12,8 @@ interface NavbarProps {
 }
 
 export default function Navbar({ children, className = "" }: NavbarProps) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className={`w-full z-50 sticky top-0 pt-6 px-6`}>
       <nav
@@ -33,8 +38,14 @@ export default function Navbar({ children, className = "" }: NavbarProps) {
                 >
                   Features
                 </Link>
+                <Link
+                  href="/history"
+                  className="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                >
+                  History
+                </Link>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <ModeToggle />
                 <Link
                   href="/generate"
@@ -43,11 +54,57 @@ export default function Navbar({ children, className = "" }: NavbarProps) {
                   <span>Start Free</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
+                <button
+                  className="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  aria-label="Toggle mobile menu"
+                >
+                  {isMobileMenuOpen ? (
+                    <X className="w-5 h-5" />
+                  ) : (
+                    <Menu className="w-5 h-5" />
+                  )}
+                </button>
               </div>
             </>
           )}
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && !children && (
+        <div className="md:hidden absolute top-[calc(100%+0.5rem)] left-6 right-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-lg flex flex-col gap-2 animate-in slide-in-from-top-2 duration-200">
+          <Link
+            href="/#how-it-works"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-base font-semibold text-slate-600 dark:text-slate-300 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
+          >
+            How it Works
+          </Link>
+          <Link
+            href="/generate"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-base font-semibold text-slate-600 dark:text-slate-300 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
+          >
+            Features
+          </Link>
+          <Link
+            href="/history"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-base font-semibold text-slate-600 dark:text-slate-300 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
+          >
+            History
+          </Link>
+          <Link
+            href="/generate"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="flex sm:hidden items-center justify-center gap-2 px-5 py-3 mt-2 bg-slate-900 dark:bg-emerald-500 text-white rounded-xl font-medium text-base transition-all shadow-md active:scale-95"
+          >
+            <span>Start Free</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

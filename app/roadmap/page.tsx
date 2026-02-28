@@ -91,6 +91,9 @@ function RoadmapContent() {
         if (data.roadmap && Array.isArray(data.roadmap)) {
           setRoadmap(data.roadmap);
           localStorage.setItem(cacheKey, JSON.stringify(data.roadmap));
+
+          // Save roadmap history
+          saveToHistory(goalStr, levelStr, timelineStr);
         } else {
           throw new Error("Invalid format received from AI.");
         }
@@ -103,6 +106,36 @@ function RoadmapContent() {
 
     fetchRoadmap();
   }, [goalStr, levelStr, timelineStr]);
+
+  const saveToHistory = (goal: string, level: string, timeline: string) => {
+    try {
+      const saved = localStorage.getItem("pathfinder_saved_roadmaps");
+      let roadmaps = saved ? JSON.parse(saved) : [];
+
+      const newEntry = {
+        id: `roadmap-${goal}-${level}-${timeline}`
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g, "-"),
+        goal,
+        level,
+        timeline,
+        createdAt: new Date().toISOString(),
+      };
+
+      // Ensure we don't save duplicates
+      if (!roadmaps.find((r: any) => r.id === newEntry.id)) {
+        // Keep at most 5 limit
+        if (roadmaps.length >= 5) return;
+        roadmaps.push(newEntry);
+        localStorage.setItem(
+          "pathfinder_saved_roadmaps",
+          JSON.stringify(roadmaps),
+        );
+      }
+    } catch (e) {
+      console.error("Failed to save history", e);
+    }
+  };
 
   const toggleComplete = (id: number) => {
     const isCompleted = completed.includes(id);

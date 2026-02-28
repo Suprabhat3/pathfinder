@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ArrowRight,
   ChevronLeft,
@@ -22,6 +22,20 @@ export default function GeneratePage() {
     level: "Beginner",
     timeline: "",
   });
+  const [limitReached, setLimitReached] = useState(false);
+
+  useEffect(() => {
+    // Check local storage for limits
+    const saved = localStorage.getItem("pathfinder_saved_roadmaps");
+    if (saved) {
+      try {
+        const roadmaps = JSON.parse(saved);
+        if (roadmaps.length >= 5) {
+          setLimitReached(true);
+        }
+      } catch (e) {}
+    }
+  }, []);
 
   const nextStep = () => {
     if (step < 3) setStep(step + 1);
@@ -33,6 +47,7 @@ export default function GeneratePage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (limitReached) return;
     router.push(
       `/roadmap?goal=${encodeURIComponent(formData.goal)}&level=${formData.level}&timeline=${encodeURIComponent(formData.timeline)}`,
     );
@@ -62,11 +77,32 @@ export default function GeneratePage() {
               ? handleSubmit
               : (e) => {
                   e.preventDefault();
+                  if (limitReached && step === 2) {
+                    // prevent going to step 3 if limit reached
+                  }
                   nextStep();
                 }
           }
           className="flex-1 flex flex-col"
         >
+          {limitReached && (
+            <div className="mb-6 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-xl p-4 flex flex-col items-center text-center animate-in fade-in duration-500">
+              <h3 className="font-bold text-amber-900 dark:text-amber-100 flex items-center gap-2 mb-2">
+                <BarChart className="w-5 h-5" /> Roadmap Limit Reached (5/5)
+              </h3>
+              <p className="text-sm text-amber-800 dark:text-amber-200/80 mb-3">
+                You have reached the maximum number of saved roadmaps. You can
+                view or manage your past roadmaps in your history.
+              </p>
+              <Link
+                href="/history"
+                className="text-sm font-medium text-amber-900 dark:text-amber-100 underline decoration-amber-300 dark:decoration-amber-700 underline-offset-4 hover:decoration-amber-500 dark:hover:decoration-amber-500 transition-colors"
+              >
+                View History
+              </Link>
+            </div>
+          )}
+
           {step === 1 && (
             <div className="animate-in fade-in slide-in-from-right-4 duration-500 space-y-6">
               <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl flex items-center justify-center mb-6">
@@ -192,7 +228,12 @@ export default function GeneratePage() {
 
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 px-8 py-3 bg-slate-900 dark:bg-emerald-500 hover:bg-slate-800 dark:hover:bg-emerald-600 text-white rounded-xl font-medium transition-all shadow-md active:scale-95 ml-auto"
+              disabled={limitReached}
+              className={`flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-medium transition-all shadow-md active:scale-95 ml-auto ${
+                limitReached
+                  ? "bg-slate-300 dark:bg-slate-800 text-slate-500 dark:text-slate-600 cursor-not-allowed shadow-none"
+                  : "bg-slate-900 dark:bg-emerald-500 hover:bg-slate-800 dark:hover:bg-emerald-600 text-white"
+              }`}
             >
               <span>{step === 3 ? "Generate Roadmap" : "Continue"}</span>
               {step !== 3 && <ArrowRight className="w-5 h-5" />}
