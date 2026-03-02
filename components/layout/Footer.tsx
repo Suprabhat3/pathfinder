@@ -149,19 +149,19 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-6 text-sm font-medium text-slate-500 dark:text-slate-400">
             <Link
-              href="#"
+              href="/privacy-policy"
               className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
-              href="#"
+              href="/terms-of-service"
               className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
             >
               Terms of Service
             </Link>
             <Link
-              href="#"
+              href="/cookies"
               className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
             >
               Cookies
